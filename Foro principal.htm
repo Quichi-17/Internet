@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="es" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Foro de Comentarios</title>
+
+<style>
+body {
+    color: #FFFFFF;
+    background-color: #000000;
+    font-family: Arial, sans-serif;
+}
+
+#foro {
+    width: 60%;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #FFFFFF;
+}
+
+input, textarea, button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px;
+}
+
+button {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #666;
+}
+
+.comentario {
+    border-bottom: 1px solid #555;
+    margin-top: 15px;
+    padding-bottom: 10px;
+}
+
+.admin-btn {
+    background-color: darkred;
+    margin-top: 5px;
+}
+.style1 {
+	color: #FF0000;
+}
+</style>
+
+<script>
+var comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
+
+function guardarComentarios() {
+    localStorage.setItem("comentarios", JSON.stringify(comentarios));
+}
+
+function mostrarComentarios() {
+    var contenedor = document.getElementById("comentarios");
+    contenedor.innerHTML = "";
+
+    for (let i = 0; i < comentarios.length; i++) {
+        let div = document.createElement("div");
+        div.className = "comentario";
+        div.innerHTML =
+            "<strong>" + comentarios[i].nombre + "</strong><br />" +
+            comentarios[i].mensaje +
+            "<br /><button class='admin-btn' onclick='eliminarComentario(" + i + ")'>Eliminar</button>";
+
+        contenedor.appendChild(div);
+    }
+}
+
+function publicarComentario() {
+    var nombre = document.getElementById("nombre").value;
+    var mensaje = document.getElementById("mensaje").value;
+
+    if (nombre === "" || mensaje === "") {
+        alert("Completa todos los campos");
+        return;
+    }
+
+    comentarios.push({ nombre: nombre, mensaje: mensaje });
+    guardarComentarios();
+    mostrarComentarios();
+
+    document.getElementById("nombre").value = "";
+    document.getElementById("mensaje").value = "";
+}
+
+function eliminarComentario(indice) {
+    if (confirm("¿Eliminar este comentario?")) {
+        comentarios.splice(indice, 1);
+        guardarComentarios();
+        mostrarComentarios();
+    }
+}
+
+window.onload = mostrarComentarios;
+</script>
+</head>
+
+<body>
+
+<div id="foro">
+    <h2>Foro de Comentarios</h2>
+
+    <input type="text" id="nombre" placeholder="Tu nombre" />
+    <textarea id="mensaje" rows="4" placeholder="Escribe tu comentario"></textarea>
+    <button onclick="publicarComentario()">Publicar</button>
+
+    <div id="comentarios"></div>
+</div>
+
+<p><a href="index.htm"><span class="style1">Vuelta al menú principal</span></a></p>
+
+</body>
+</html>

@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:v="urn:schemas-microsoft-com:vml" 
+xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="es" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>INTERNET</title>
+
+<style type="text/css">
+.style1 {
+	text-align: center;
+	color: #0000FF;
+	font-size: xx-large;
+}
+.style2 {
+	background-color: #000000;
+}
+.style3 {
+	color: #FF0000;
+}
+.style5 {
+	color: #00FFFF;
+}
+
+/* ===== MENU DESPLEGABLE ANIMADO ===== */
+.menu {
+	width: 300px;
+	background-color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.menu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.menu li {
+	position: relative;
+	border-bottom: 1px solid #333;
+}
+
+.menu a {
+	display: block;
+	padding: 10px;
+	color: #FF0000;
+	text-decoration: none;
+}
+
+.menu a:hover {
+	background-color: #333333;
+	color: #00FFFF;
+}
+
+/* SUBMENU CON ANIMACION */
+.menu ul ul {
+	max-height: 0;
+	overflow: hidden;
+	background-color: #111111;
+	transition: max-height 0.5s ease;
+}
+
+.menu ul li:hover > ul {
+	max-height: 300px;
+}
+
+/* ===== SLIDER ===== */
+.slider {
+	position: relative;
+	width: 889px;
+	height: 546px;
+	overflow: hidden;
+}
+
+.slider img {
+	position: absolute;
+	width: 889px;
+	height: 546px;
+	opacity: 0;
+	transition: opacity 1s ease-in-out;
+}
+
+.slider img.active {
+	opacity: 1;
+}
+</style>
+
+<script type="text/javascript">
+function FP_swapImg() {
+ var doc=document,args=arguments,elm,n; 
+ doc.$imgSwaps=new Array(); 
+ for(n=2; n<args.length; n+=2) { 
+  elm=document.getElementById(args[n]); 
+  if(elm) { 
+   doc.$imgSwaps[doc.$imgSwaps.length]=elm;
+   elm.$src=elm.src; 
+   elm.src=args[n+1]; 
+  } 
+ }
+}
+
+function FP_preloadImgs() {
+ var d=document,a=arguments; 
+ if(!d.FP_imgs) d.FP_imgs=new Array();
+ for(var i=0; i<a.length; i++) { 
+  d.FP_imgs[i]=new Image; 
+  d.FP_imgs[i].src=a[i]; 
+ }
+}
+
+function contarVisitas() {
+	if (localStorage.getItem("visitas") === null) {
+		localStorage.setItem("visitas", 1);
+	} else {
+		var visitas = parseInt(localStorage.getItem("visitas"));
+		visitas++;
+		localStorage.setItem("visitas", visitas);
+	}
+	document.getElementById("contadorVisitas").innerHTML = localStorage.getItem("visitas");
+}
+
+function actualizarFechaHora() {
+	var ahora = new Date();
+	var dia = ahora.getDate().toString().padStart(2, '0');
+	var mes = (ahora.getMonth() + 1).toString().padStart(2, '0');
+	var anio = ahora.getFullYear();
+	var hora = ahora.getHours().toString().padStart(2, '0');
+	var min = ahora.getMinutes().toString().padStart(2, '0');
+	var seg = ahora.getSeconds().toString().padStart(2, '0');
+
+	document.getElementById("fechaHora").innerHTML =
+		dia + "/" + mes + "/" + anio + " " + hora + ":" + min + ":" + seg;
+}
+</script>
+
+</head>
+
+<body style="background-color: #000000; color: #FFFFFF;">
+
+<table style="width: 1200px; height: 600px" class="style2">
+	<tr>
+		<td colspan="2" class="style1" style="height: 38px">INTERNET</td>
+	</tr>
+	<tr>
+		<td style="width: 308px">
+
+		<div class="menu">
+			<ul>
+				<li><a href="Definición.htm">Definición</a></li>
+				<li><a href="Historia.htm">Historia</a></li>
+
+				<li>
+					<a href="#">Conexión a Internet ▾</a>
+					<ul>
+						<li><a href="Tarjeta%20red%20y%20modem.htm">Tarjeta red y modem</a></li>
+						<li><a href="Tipos%20de%20conexiones%20a%20internet.htm">Tipos de conexiones</a></li>
+					</ul>
+				</li>
+
+				<li><a href="#">Navegadores ▾</a></li>
+				<li>
+					&nbsp;<ul>
+						<li class="style3">
+							<a href="Navegadores.htm">Navegadores</a></li>
+						<li class="style3">
+							<a href="navegadores%201.htm">Características de los navegadores</a>
+						</li>
+						<li class="style3">
+							<a href="Navegadores%202.htm">Características de los navegadores 2</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="#">Protocolos ▾</a>
+					<ul>
+						<li class="style3">
+							<a href="Protocolos.htm">Protocolos TCP e IP</a>
+						</li>
+						<li class="style3">
+							<a href="Protocolos%20FTP.htm">Protocolo FTP</a>
+						</li>
+					</ul>
+				</li>
+
+				<li><a href="paginas%20web.htm">Páginas web</a></li>
+				<li><a href="funcionalidades.htm">Funcionalidades</a></li>
+
+				<li>
+					<a href="#">Privacidad y seguridad ▾</a>
+					<ul>
+						<li>
+							<a href="privacidad%20y%20seguridad%20en%20redes%20sociales.htm">
+								Privacidad y seguridad
+							</a>
+						</li>
+						<li class="style3">
+							<a href="privacidad%202.htm">Privacidad y seguridad 2</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		</td>
+		<td class="style3">
+			<img src="Imágenes/internet-mundo-1-min.jpg" height="524" width="800" alt="Internet" />
+		</td>
+	</tr>
+</table>
+
+<table style="width: 426px; height: 21px">
+	<tr>
+		<td>
+			<span class="style5">Fecha:</span>
+			<span class="style5" id="fechaHora"></span>
+		</td>
+		<td>
+			<span class="style5">Visitas:</span>
+			<span class="style5" id="contadorVisitas">0</span>
+		</td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+window.addEventListener("load", function () {
+	// Preload imágenes y contar visitas
+	FP_preloadImgs('button6.jpg','button7.jpg','button13.jpg','button14.jpg','button1A.jpg','button1B.jpg','button8.jpg','button9.jpg');
+	contarVisitas();
+	actualizarFechaHora();
+	setInterval(actualizarFechaHora, 1000);
+
+	// Slider
+	var imgOriginal = document.querySelector("td.style3 img");
+
+	var slider = document.createElement("div");
+	slider.className = "slider";
+
+	var imagenes = [
+		"Imágenes/internet-mundo-1-min.jpg",
+		"Imágenes/internet2.jpg",
+		"Imágenes/internet3.jpg"
+	];
+
+	for (var i = 0; i < imagenes.length; i++) {
+		var img = document.createElement("img");
+		img.src = imagenes[i];
+		if (i === 0) img.className = "active";
+		slider.appendChild(img);
+	}
+
+	imgOriginal.parentNode.replaceChild(slider, imgOriginal);
+
+	var index = 0;
+	var slides = slider.getElementsByTagName("img");
+
+	setInterval(function () {
+		slides[index].classList.remove("active");
+		index = (index + 1) % slides.length;
+		slides[index].classList.add("active");
+	}, 3000);
+});
+</script>
+
+</body>
+</html>
